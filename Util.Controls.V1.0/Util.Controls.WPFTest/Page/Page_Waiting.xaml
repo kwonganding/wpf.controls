@@ -1,0 +1,52 @@
+﻿<Page x:Class="Util.Controls.WPFTest.Page_Waiting"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:core="clr-namespace:Util.Controls;assembly=Util.Controls"
+      xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+      mc:Ignorable="d"  Background="#5656CA"
+      d:DesignHeight="600" d:DesignWidth="800"
+	Title="Page_Waiting">
+    <Page.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Background" Value="{StaticResource WindowBackground}"/>
+        </Style>
+    </Page.Resources>
+    <StackPanel Style="{x:Null}">
+        <StackPanel Height="90">
+            <CheckBox VerticalAlignment="Center" x:Name="cbActive" Margin="5" IsChecked="True">IsActive</CheckBox>
+            <core:ProgressRing Width="80" Height="80" Foreground="Red" Margin="5"  IsActive="{Binding IsChecked ,ElementName=cbActive}" />
+            <CheckBox VerticalAlignment="Center" x:Name="cbActive2" IsChecked="True" Margin="5">IsActive</CheckBox>
+            <core:BusyBox Width="80" Height="80" Foreground="White" Background="Red"  Margin="5"  IsActive="{Binding IsChecked ,ElementName=cbActive2}" />
+            <core:BusyBox Width="30" Height="30" Foreground="White" Background="Red"  Margin="5"  IsActive="{Binding IsChecked ,ElementName=cbActive2}" />
+
+        </StackPanel>
+        <StackPanel Height="350">
+            <ProgressBar Margin="5" Orientation="Vertical" Width="12" Height="auto" Value="{Binding Percent,Mode=OneWay}" Style="{StaticResource SimpleProgressBar}" x:Name="pro6"></ProgressBar>
+            <ProgressBar Style="{StaticResource LoopProcessBar}" Value="{Binding Percent,Mode=OneWay}"  x:Name="pro1" ></ProgressBar>
+
+            <Grid Width="200" Height="200">
+                <ProgressBar Style="{StaticResource LoopProcessBar}" Value="{Binding Percent,Mode=OneWay}" x:Name="pro2" Margin="0" Width="200" Height="200" BorderThickness="20" BorderBrush="#EF436F"/>
+                <TextBlock FontSize="30" Text="{Binding Value,Mode=OneWay,ElementName=pro2,StringFormat={}{0:p1}}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+
+            <ProgressBar Style="{StaticResource LoopProcessBar}" x:Name="pro3" Value="{Binding Percent,Mode=OneWay}" Width="100" Height="100" BorderThickness="10" BorderBrush="#EFBF0E"></ProgressBar>
+            <core:FButton Content="成功" Margin="3" Click="FButton_Click" />
+            <core:FButton Content="失败" Margin="3" Click="FButton1_Click"/>
+            <core:FButton Content="重置" Margin="3" Click="FButton_Click_1"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical">
+            <ProgressBar Margin="5" Value="{Binding Percent,Mode=OneWay}" Style="{StaticResource SimpleProgressBar}" x:Name="pro4"></ProgressBar>
+            <ProgressBar Margin="5" Value="{Binding Percent,Mode=OneWay}" Height="15" x:Name="pro5" Background="LightSteelBlue" Foreground="OrangeRed" Style="{StaticResource SimpleProgressBar}"></ProgressBar>
+            <TextBlock x:Name="proValue"  Text="{Binding Percent,Mode=OneWay,StringFormat={}{0:p1}}" HorizontalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <StackPanel ></StackPanel>
+        <StackPanel ></StackPanel>
+        <StackPanel ></StackPanel>
+    </StackPanel>
+</Page>

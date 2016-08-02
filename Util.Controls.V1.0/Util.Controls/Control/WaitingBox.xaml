@@ -1,0 +1,29 @@
+﻿<Window x:Class="System.Windows.WaitingBox" x:Name="wb"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False" Background="Transparent"
+        Title="WaitingBox" Height="110" Width="260">
+    <Grid>
+        <!--Background="{Binding Path=Background,ElementName=wb}"-->
+        <Border Background="{StaticResource WaitingBoxBackground}"  Opacity="0.89" CornerRadius="1" Effect="{StaticResource WindowDropShadow}"></Border>
+        <StackPanel VerticalAlignment="Center"  Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+            <TextBlock Text="&#xe65f;" x:Name="FIcon" FontSize="50" Style="{StaticResource FIcon}"  RenderTransformOrigin="0.5,0.5" Margin="3">
+                <TextBlock.RenderTransform>
+                    <RotateTransform x:Name="TransFIcon" Angle="0"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="txtMessage" Margin="2,10,15,10" Width="160" VerticalAlignment="Center" TextWrapping="Wrap">Loading...</TextBlock>
+        </StackPanel>
+    </Grid>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard >
+                <Storyboard >
+                    <DoubleAnimation RepeatBehavior="Forever" Storyboard.TargetName="TransFIcon" 
+                                     Storyboard.TargetProperty="Angle" To="360" Duration="0:0:2.5"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+</Window>

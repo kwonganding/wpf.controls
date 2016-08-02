@@ -1,0 +1,77 @@
+﻿<Page x:Class="Util.Controls.WPFTest.Page_ListView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d"  xmlns:xly="clr-namespace:Util.Controls;assembly=Util.Controls"
+      d:DesignHeight="800" d:DesignWidth="900" Background="#5656CA"
+	Title="Page_ListView">
+    <Page.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Background" Value="{StaticResource WindowBackground}"/>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="160"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Height="Auto" Orientation="Horizontal">
+            <TextBox Width="200" Height="30" Margin="3" x:Name="txtNumber" xly:ControlAttachProperty.Watermark="请输数量" 
+                         Style="{StaticResource LabelTextBox}" xly:ControlAttachProperty.Label="数量：">300</TextBox>
+            <xly:FButton Margin="3" x:Name="btnBind" Click="btnBind_Click">绑定列表</xly:FButton>
+        </StackPanel>
+
+        <ListView Grid.Row="1" x:Name="gridList0" Style="{StaticResource DefaultListView}" Margin="3" >
+            <!--<ListViewItem>2222</ListViewItem>
+            <ListViewItem>2222</ListViewItem>
+            <ListViewItem>2222</ListViewItem>
+            <ListViewItem>2222</ListViewItem>-->
+        </ListView>
+
+        <ListView Margin="3" Grid.Row="2" x:Name="gridList"  Style="{StaticResource DefaultListView}" AlternationCount="1">
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource DefaultGridViewColumnHeader}">
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="auto"></GridViewColumn>
+                    <GridViewColumn Header="Manufacturer" DisplayMemberBinding="{Binding Manufacturer}" Width="200"></GridViewColumn>
+                    <GridViewColumn Header="Mode" DisplayMemberBinding="{Binding Mode}" Width="200"></GridViewColumn>
+                    <GridViewColumn Header="Name" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Name}"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView Margin="3" Grid.Row="3" x:Name="gridList2"  Style="{StaticResource DefaultListView}" >
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource DefaultGridViewColumnHeader}">
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="auto"></GridViewColumn>
+                    <GridViewColumn Header="Manufacturer" DisplayMemberBinding="{Binding Manufacturer}" Width="200"></GridViewColumn>
+                    <GridViewColumn Header="Mode" DisplayMemberBinding="{Binding Mode}" Width="200"></GridViewColumn>
+                    <GridViewColumn Header="Name" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Name}"></CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+
+
+</Page>

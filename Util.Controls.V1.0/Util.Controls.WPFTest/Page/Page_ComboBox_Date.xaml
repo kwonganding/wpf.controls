@@ -1,0 +1,87 @@
+﻿<Page x:Class="Util.Controls.WPFTest.Page_ComboBox_Date"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
+      xmlns:xly="clr-namespace:Util.Controls;assembly=Util.Controls"
+      xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib"
+      mc:Ignorable="d" Background="Blue"
+      d:DesignHeight="600" d:DesignWidth="800"
+	Title="Page_ComboBox_Date">
+    <Page.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Background" Value="{StaticResource WindowBackground}"/>
+        </Style>
+
+        <collections:ArrayList x:Key="items">
+            <system:String >1111</system:String>
+            <system:String>2222</system:String>
+            <system:String>44444</system:String>
+            <system:String>555555</system:String>
+            <system:String>555555</system:String>
+            <system:String>包含附包含附加属性包含附加属性加属性</system:String>
+            <system:String>按钮的样式</system:String>
+            <system:String>21211313</system:String>
+        </collections:ArrayList>
+
+    </Page.Resources>
+    <StackPanel Style="{x:Null}">
+        <StackPanel Height="50">
+            <ComboBox Margin="5" ItemsSource="{StaticResource items}" xly:ControlAttachProperty.Watermark="我收水3333333333333333333333印" />
+            <ComboBox Margin="5" IsEditable="True" ItemsSource="{StaticResource items}" xly:ControlAttachProperty.Watermark="我收水3333333333333333333333印" />
+            <ComboBox Margin="5" IsEnabled="False" ItemsSource="{StaticResource items}" SelectedIndex="3" />
+        </StackPanel>
+        <StackPanel Height="50">
+            <ComboBox Margin="5" ItemsSource="{StaticResource items}" xly:ControlAttachProperty.Label="选择性别" 
+                      Style="{StaticResource LabelComboBox}"  xly:ControlAttachProperty.Watermark="水印" />
+            <ComboBox Margin="5" IsEditable="True" ItemsSource="{StaticResource items}" xly:ControlAttachProperty.Label="选择性别" 
+                      Style="{StaticResource LabelComboBox}" xly:ControlAttachProperty.Watermark="我收水3333333333333333333333印" />
+            <ComboBox Margin="5" IsEnabled="False" ItemsSource="{StaticResource items}" xly:ControlAttachProperty.Label="选择性别" 
+                      Style="{StaticResource LabelComboBox}" SelectedIndex="3" />
+        </StackPanel>
+        <StackPanel Height="50">
+            <ComboBox Margin="5" ItemsSource="{StaticResource items}" xly:ControlAttachProperty.Label="选择性别" 
+                      Style="{StaticResource LabelClearButtonComboBox}"  xly:ControlAttachProperty.Watermark="水印" />
+            <ComboBox Margin="5" IsEditable="True" ItemsSource="{StaticResource items}" xly:ControlAttachProperty.Label="选择性别" 
+                      Style="{StaticResource LabelClearButtonComboBox}" xly:ControlAttachProperty.Watermark="我收水3333333333333333333333印" />
+            <ComboBox Margin="5" IsEnabled="False" ItemsSource="{StaticResource items}" xly:ControlAttachProperty.Label="选择性别" 
+                      Style="{StaticResource LabelClearButtonComboBox}" SelectedIndex="3" />
+        </StackPanel>
+
+        <StackPanel Height="50">
+            <ComboBox Margin="5" ItemsSource="{StaticResource items}" xly:ControlAttachProperty.Label="选择性别"
+                      Style="{StaticResource ClearButtonComboBox}"  xly:ControlAttachProperty.Watermark="水印" />
+            <ComboBox Margin="5" IsEditable="True" ItemsSource="{StaticResource items}" xly:ControlAttachProperty.Label="选择性别" 
+                      IsReadOnly="True" SelectedIndex="2"
+                      Style="{StaticResource ClearButtonComboBox}" xly:ControlAttachProperty.Watermark="IsReadOnly3333333333333333333333印" />
+            <ComboBox Margin="5" IsEnabled="False" ItemsSource="{StaticResource items}" xly:ControlAttachProperty.Label="选择性别" 
+                      Style="{StaticResource ClearButtonComboBox}" SelectedIndex="3" />
+        </StackPanel>
+
+        <StackPanel Height="50">
+            <DatePicker Margin="3"/>
+            <DatePicker Margin="3" SelectedDate="{x:Static system:DateTime.Today}"/>
+            <DatePicker Margin="3" IsEnabled="False" SelectedDate="{x:Static system:DateTime.Today}"/>
+        </StackPanel>
+        <StackPanel Height="50">
+            <DatePicker Margin="3" Style="{StaticResource LabelClearButtonDatePicker}" xly:ControlAttachProperty.Label="出生日期"/>
+            <DatePicker Margin="3" Style="{StaticResource LabelDatePicker}" xly:ControlAttachProperty.Label="死亡日期" SelectedDate="{x:Static system:DateTime.Today}"/>
+            <DatePicker Margin="3" Style="{StaticResource LabelDatePicker}" xly:ControlAttachProperty.Label="非法日期" IsEnabled="False" SelectedDate="{x:Static system:DateTime.Today}"/>
+        </StackPanel>
+        <StackPanel Height="50">
+            <DatePicker Margin="3" Style="{StaticResource ClearButtonDatePicker}"/>
+            <DatePicker Margin="3" SelectedDate="{x:Static system:DateTime.Today}"/>
+            <DatePicker Margin="3" Style="{StaticResource ClearButtonDatePicker}" IsEnabled="False" SelectedDate="{x:Static system:DateTime.Today}"/>
+            <xly:HighTextBlock Content="1212" Keyword="12"></xly:HighTextBlock>
+        </StackPanel>
+        <StackPanel Height="auto">
+            <Calendar Margin="3" Style="{StaticResource DefaultCalendar}"></Calendar>
+            <Calendar Margin="3" Style="{StaticResource DefaultCalendar}" IsEnabled="False"></Calendar>
+        </StackPanel>
+
+    </StackPanel>
+</Page>

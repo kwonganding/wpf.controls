@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Util.Controls">
+    <Style TargetType="{x:Type local:HighTextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}"/>
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSize}"/>
+        <Setter Property="HighForeground" Value="{StaticResource ItemHighlighteForeground}"/>
+        <Setter Property="HighBackground" Value="{StaticResource ItemHighlighteBackground}"/>
+    </Style>
+
+
+</ResourceDictionary>

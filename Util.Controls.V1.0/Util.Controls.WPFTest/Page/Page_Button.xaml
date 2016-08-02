@@ -1,0 +1,129 @@
+﻿<Page x:Class="Util.Controls.WPFTest.Page_Button"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xly="clr-namespace:Util.Controls;assembly=Util.Controls"
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d"  Background="#5656CA"
+      d:DesignHeight="600" d:DesignWidth="800"
+	Title="Page_Button">
+    <Page.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Background" Value="{StaticResource WindowBackground}"/>
+        </Style>
+
+    </Page.Resources>
+    <StackPanel Style="{x:Null}">
+        <StackPanel >
+            <xly:FButton FIcon="&#xe602;" Margin="3">系统换转</xly:FButton>
+            <xly:FButton FIcon="&#xe628;" Margin="3" Width="140" Height="40" Background="#771C79" MouseOverBackground="#F20BA0"  Click="FButton_Click" >WaitingBox</xly:FButton>
+            <xly:FButton FIcon="&#xe629;" Margin="3" Width="140" Height="40" Background="#12B512" IsDefault="True" MouseOverBackground="#08EE08" Click="FButton_Click_WindowBase">WindowBase</xly:FButton>
+
+            <xly:FButton FIcon="&#xe64f;" Margin="5,0,0,0" CornerRadius="16,0,0,16" AllowsAnimation="True" Click="FButton_Click_Info">Info</xly:FButton>
+            <xly:FButton FIcon="&#xe628;" CornerRadius="0" Click="FButton_Click_Question">Question</xly:FButton>
+            <xly:FButton FIcon="&#xe628;" CornerRadius="0" Click="FButton_Click_Warning">Warining</xly:FButton>
+            <xly:FButton FIcon="&#xe629;" CornerRadius="0,16,16,0" AllowsAnimation="True" Click="FButton_Click_Error">Error</xly:FButton>
+
+        </StackPanel>
+        <StackPanel >
+
+            <xly:FButton FIcon="&#xe627;" Margin="5" FIconMargin="0" FIconSize="30" Style="{StaticResource FButton_Transparency}" ></xly:FButton>
+            <xly:FButton FIcon="&#xe628;" Margin="5" Style="{StaticResource FButton_Transparency}"></xly:FButton>
+            <xly:FButton FIcon="&#xe629;" Margin="5" Style="{StaticResource FButton_Transparency}" IsEnabled="False"></xly:FButton>
+
+            <xly:FButton FIcon="&#xe60c;" Margin="5" Style="{StaticResource FButton_Transparency}" AllowsAnimation="True"></xly:FButton>
+            <xly:FButton FIcon="&#xe622;" Margin="5" FIconSize="50" Style="{StaticResource FButton_Transparency}" AllowsAnimation="True"></xly:FButton>
+            <xly:FButton FIcon="&#xe604;" Margin="5"  Style="{StaticResource FButton_Transparency}" AllowsAnimation="True"></xly:FButton>
+
+        </StackPanel>
+
+        <StackPanel >
+            <xly:FButton FIcon="&#xe60e;" Margin="3" Style="{StaticResource FButton_Transparency}">如何开启调试模式?</xly:FButton>
+            <xly:FButton FIcon="&#xe617;" Margin="3" Style="{StaticResource FButton_Transparency}" IsEnabled="False">设备检测</xly:FButton>
+            <xly:FButton FIcon="&#xe629;" Margin="3" Style="{StaticResource FButton_Transparency}">爸爸回来了</xly:FButton>
+
+            <xly:FButton FIcon="&#xe65d;" Margin="10,3,3,3" Width="55" Style="{StaticResource FButton_Transparency}">全选</xly:FButton>
+            <xly:FButton FIcon="&#xe65e;" Margin="3" Width="70" Style="{StaticResource FButton_Transparency}">全不选</xly:FButton>
+
+        </StackPanel>
+
+        <StackPanel >
+            <xly:FButton Margin="3,15" Style="{StaticResource FButton_LinkButton}" >如何开启调试模式?</xly:FButton>
+            <xly:FButton FIcon="&#xe617;" Margin="3" Style="{StaticResource FButton_LinkButton}">设备检测</xly:FButton>
+            <xly:FButton Margin="3" Style="{StaticResource FButton_LinkButton}">爸爸回来了</xly:FButton>
+
+            <RadioButton Style="{StaticResource BoxRadioButton}" Margin="1">近3天</RadioButton>
+            <RadioButton Style="{StaticResource BoxRadioButton}" Margin="1">近7天</RadioButton>
+            <RadioButton Style="{StaticResource BoxRadioButton}" Margin="1">本月</RadioButton>
+            <RadioButton Style="{StaticResource BoxRadioButton}" Margin="1">自定义</RadioButton>
+            <RadioButton Style="{StaticResource BoxRadioButton}" Margin="1">2012.05.12-2015.12.14</RadioButton>
+
+
+        </StackPanel>
+
+        <StackPanel >
+            <Menu Background="#03A57C" Width="Auto" Height="30">
+                <MenuItem Header="系统管理"  Icon="&#xe604;" Margin="1,0,5,0" Style="{StaticResource TransparentHeaderMenuItem}" >
+                    <MenuItem Header="设置" Icon="&#xE633;"/>
+                    <MenuItem Icon="&#xE639;" Header="插件管理" >
+                        <MenuItem Icon="&#xe655;"  Header="用户管理" />
+                        <MenuItem Icon="&#xe64a;" Header="修改密码" >
+                            <MenuItem Icon="&#xe655;"  Header="用户管理" />
+                            <MenuItem Icon="&#xe64a;" Header="修改密码" />
+                            <MenuItem Icon="&#xe641;" Header="在线更新" />
+                        </MenuItem>
+                        <MenuItem Icon="&#xe641;" Header="在线更新" />
+                    </MenuItem>
+                    <MenuItem Icon="&#xe655;"  Header="用户管理" IsChecked="True" />
+                    <MenuItem Icon="&#xe64a;" Header="修改密码" />
+                    <MenuItem Icon="&#xe641;" Header="在线更新" />
+                    <Separator  Style="{StaticResource HorizontalSeparatorStyle}"/>
+                    <MenuItem Icon="&#xe657;" Header="问题反馈" />
+                    <MenuItem Icon="&#xe61e;" Header="技术支持" />
+                    <MenuItem Icon="&#xe60e;" Header="帮助" />
+                    <MenuItem Icon="&#xe635;" Header="关于" />
+                </MenuItem>
+
+                <MenuItem Header="帮助(H)"  InputGestureText="Ctrl+H" Icon="&#xe643;" >
+                    <MenuItem Header="设置" Icon="&#xE633;"/>
+                    <MenuItem Icon="&#xE639;" Header="插件管理" />
+                    <MenuItem Icon="&#xe655;"  Header="用户管理" />
+                    <MenuItem Icon="&#xe64a;" Header="修改密码" />
+                    <MenuItem Icon="" Header="在线更新" />
+                    <Separator Style="{StaticResource HorizontalSeparatorStyle}"/>
+                    <MenuItem Icon="&#xe657;" Header="问题反馈" />
+                    <MenuItem Icon="&#xe61e;" Header="技术支持" />
+                    <MenuItem Icon="&#xe60e;" Header="帮助" />
+                    <MenuItem Icon="&#xe635;" Header="关于" />
+                </MenuItem>
+                <MenuItem Icon="&#xe635;" Header="关于1" />
+            </Menu>
+
+            <Menu  Width="30" Height="30" Margin="3" Background="Transparent" >
+                <MenuItem Header="" Style="{StaticResource TransparentHeaderMenuItem}" Padding="0"  Icon="&#xe643;" >
+                    <MenuItem Header="设置" Icon="&#xE633;"/>
+                    <MenuItem Icon="&#xE639;" Header="插件管理" />
+                    <MenuItem Icon="&#xe655;"  Header="用户管理" />
+                    <MenuItem Icon="&#xe64a;" Header="修改密码" />
+                    <MenuItem Icon="" Header="在线更新" />
+                    <Separator Background="SpringGreen" Style="{StaticResource HorizontalSeparatorStyle}"/>
+                    <MenuItem Icon="&#xe657;" Header="问题反馈" />
+                    <MenuItem Icon="&#xe61e;" Header="技术支持" />
+                    <MenuItem Icon="&#xe60e;" Header="帮助" />
+                    <MenuItem Icon="&#xe635;" Header="关于" />
+                </MenuItem>
+            </Menu>
+
+            <Separator Style="{StaticResource VerticalSeparatorStyle}" Margin="10"/>
+        </StackPanel>
+
+        <StackPanel >
+
+        </StackPanel>
+
+    </StackPanel>
+</Page>

@@ -1,0 +1,41 @@
+﻿
+启用动画：xly:ControlAttachProperty.AllowsAnimation="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}"
+静态引用：Converter={x:Static xly:XConverter.TrueToFalseConverter}
+自定义标题交互：shell:WindowChrome.IsHitTestVisibleInChrome="True"
+
+FButton:
+	FButton_Transparency：<Setter Property="Padding" Value="3,1,3,1" />         <Setter Property="FIconMargin" Value="0,0,2,0" />
+	FButton_LinkButton
+
+TextBox：
+	LabelTextBox,	LabelClearButtonTextBox,	ClearButtonTextBox,	LabelOpenFileTextBox,	LabelOpenFolderTextBox,	LabelSaveFileTextBox
+	LabelTextBoxStyle：只读可复制的文本样式
+
+ToggleButton
+	DefaultToggleButton,	FIconToggleButton
+
+Separator
+	VerticalSeparatorStyle,	HorizontalSeparatorStyle
+
+ProgressBar
+	SimpleProgressBar
+
+Menu
+	TextBoxContextMenu 文本右键菜单
+	TransparentHeaderMenuItem 第一级菜单样式
+
+DatePicker
+	DefaultDatePicker,ClearButtonDatePicker,LabelDatePicker,LabelClearButtonDatePicker
+
+ComboBox
+	DefaultComboBox,ClearButtonComboBox,LabelComboBox,LabelClearButtonComboBox
+
+MultiComboBox
+	DefaultMultiComboBox，ClearButtonMultiComboBox，LabelMultiComboBox，LabelClearButtonMultiComboBox
+
+PasswordBox
+	ClearButtonPasswordBox，LabelPasswordBox，LabelClearButtonPasswordBox
+
+FIcon：Style="{StaticResource FIcon}"
+
+xmlns:xly="clr-namespace:Util.Controls;assembly=Util.Controls"

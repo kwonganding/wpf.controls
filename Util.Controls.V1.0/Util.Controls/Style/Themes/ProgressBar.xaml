@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:local="clr-namespace:Util.Controls"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--ProgressBar Style-->
+    <Style TargetType="ProgressBar" x:Key="SimpleProgressBar">
+        <Setter Property="Background" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="Maximum" Value="1" />
+        <Setter Property="Value" Value="0" />
+        <Setter Property="Height" Value="10" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Foreground" Value="{StaticResource FocusBorderBrush}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="local:ControlAttachProperty.CornerRadius" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ProgressBar">
+                    <Grid x:Name="Root" >
+                        <Border x:Name="PART_Track" Background="{TemplateBinding Background}" 
+                                CornerRadius="{TemplateBinding local:ControlAttachProperty.CornerRadius}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        <Border  x:Name="PART_Indicator" HorizontalAlignment="Left" Background="{TemplateBinding Foreground}" 
+                                CornerRadius="{TemplateBinding local:ControlAttachProperty.CornerRadius}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Orientation" Value="Vertical">
+                            <Setter Property="LayoutTransform" TargetName="Root" >
+                                <Setter.Value>
+                                    <RotateTransform Angle="-90" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,34 @@
+﻿<local:WindowBase x:Class="System.Windows.MessageBoxX"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"
+        xmlns:local="clr-namespace:Util.Controls" WindowStartupLocation="CenterOwner"
+        MaxboxEnable="False" MinboxEnable="False" ResizeMode="NoResize" FIcon="&#xe608;" x:Name="mb" 
+        Title="MessageBox" ShowInTaskbar="False" SizeToContent="WidthAndHeight"  Style="{StaticResource DefaultWindowStyle}" CaptionHeight="24">
+    <local:WindowBase.InputBindings>
+        <KeyBinding Key="Escape" Command="{x:Static shell:SystemCommands.CloseWindowCommand}"/>
+    </local:WindowBase.InputBindings>
+    <Grid>
+        <Grid Margin="5,8,5,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="ficon" HorizontalAlignment="Right" FontSize="80" Text="&#xe61c;" Foreground="{Binding Foreground,ElementName=mb}" Style="{StaticResource FIcon}" Margin="5"/>
+            <TextBlock x:Name="txtMessage" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{Binding Foreground,ElementName=mb}" 
+                       FontSize="{Binding FontSize,ElementName=mb}" TextWrapping="Wrap" 
+                   Margin="5,20,10,20" MinWidth="260" MaxWidth="420">新建一个WPF程序在Windows8下面就会出现左边的窗口边框，颜色取决于Windows主题我想在想创建一个右边那样的窗口，要么是窄边，要么没有边</TextBlock>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="1" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                <local:FButton x:Name="btnOK" FIcon="&#xe646;" Width="85" Height="30" CornerRadius="0" Margin="5,5,20,5" Click="btnOK_Click">确定</local:FButton>
+                <local:FButton x:Name="btnCancel" FIcon="&#xe644;" Width="85" Height="30" CornerRadius="0"
+                           Margin="20,5,10,5" Click="btnCancel_Click">取消</local:FButton>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</local:WindowBase>

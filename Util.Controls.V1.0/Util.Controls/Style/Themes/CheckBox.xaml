@@ -1,0 +1,79 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Util.Controls">
+    <Style x:Key="DefaultCheckBox" TargetType="{x:Type CheckBox}">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="local:ControlAttachProperty.FIconMargin" Value="1, 1, 3, 1"></Setter>
+        <Setter Property="local:ControlAttachProperty.FIconSize" Value="18"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource FontSize}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid x:Name="grid" Margin="{TemplateBinding Padding}" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock  x:Name="icon" Style="{StaticResource FIcon}" Text="&#xe68b;"
+                                        FontSize="{TemplateBinding local:ControlAttachProperty.FIconSize}"
+                                        Margin="{TemplateBinding local:ControlAttachProperty.FIconMargin}"
+                                        Foreground="{TemplateBinding Foreground}"/>
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                    <!--触发器：设置选中状态符号-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="Text" Value="&#xe660;" TargetName="icon" ></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource CheckedForeground}"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter Property="Text" Value="&#xe68c;" TargetName="icon" ></Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Foreground" Value="{StaticResource MouseOverForeground}"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="{StaticResource DisableOpacity}" TargetName="grid" ></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--SimpleCheckBox 无内容-->
+    <Style x:Key="SimpleCheckBox" TargetType="{x:Type CheckBox}">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
+        <Setter Property="local:ControlAttachProperty.FIconMargin" Value="1"></Setter>
+        <Setter Property="local:ControlAttachProperty.FIconSize" Value="22"></Setter>
+        <Setter Property="FontSize" Value="{StaticResource FontSize}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <TextBlock  x:Name="icon" Style="{StaticResource FIcon}" Text="&#xe68b;" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                        FontSize="{TemplateBinding local:ControlAttachProperty.FIconSize}"
+                                        Margin="{TemplateBinding local:ControlAttachProperty.FIconMargin}"
+                                        Foreground="{TemplateBinding Foreground}"/>
+                    <!--触发器：设置选中状态符号-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="Text" Value="&#xe660;" TargetName="icon" ></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource CheckedForeground}"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter Property="Text" Value="&#xe68c;" TargetName="icon" ></Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Foreground" Value="{StaticResource MouseOverForeground}"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="{StaticResource DisableOpacity}" TargetName="icon" ></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,1 @@
+IsHitTestVisible="False" 控件无法获取焦点,所以设置IsHitTestVisible="False",使其无法进行交互
