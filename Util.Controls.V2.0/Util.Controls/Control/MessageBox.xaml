@@ -1,0 +1,28 @@
+﻿<local:WindowBase x:Class="Util.Controls.MessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Util.Controls" WindowStartupLocation="CenterOwner"
+        MaxboxEnable="False" MinboxEnable="False" ResizeMode="NoResize" FIcon="&#xe602;" x:Name="mb" 
+        Title="MessageBox" ShowInTaskbar="False" SizeToContent="WidthAndHeight"  Style="{StaticResource DefaultWindowStyle}" CaptionHeight="26">
+    <Grid Margin="5,8,5,5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="95"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="ficon" HorizontalAlignment="Right" FontSize="60" Text="{Binding FIcon,Mode=OneWay}" Foreground="{Binding Foreground,Mode=OneWay}" Style="{StaticResource FIcon}" Margin="5"/>
+        <TextBlock x:Name="txtMessage" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{Binding Foreground,Mode=OneWay}" 
+                       FontSize="{Binding FontSize,ElementName=mb}" TextWrapping="Wrap"  MaxHeight="300"
+                   Margin="5,20,10,20" MinWidth="260" MaxWidth="560" Text="{Binding Text,Mode=OneWay}"/>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="1" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Button x:Name="btnOK" local:UtilProperty.FIcon="&#xe65a;" Width="85" Height="30" local:UtilProperty.CornerRadius="1" 
+                    IsDefault="True" Margin="5,5,20,5" Click="btnOK_Click">确定</Button>
+            <Button x:Name="btnCancel" local:UtilProperty.FIcon="&#xe616;" Width="85" Height="30" local:UtilProperty.CornerRadius="1"
+                           Margin="20,5,10,5" Click="btnCancel_Click" Visibility="{Binding CancleButtonVisibility,Mode=OneWay}">取消</Button>
+        </StackPanel>
+    </Grid>
+</local:WindowBase>

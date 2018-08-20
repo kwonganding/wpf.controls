@@ -1,0 +1,7 @@
+全局theme：defaulttheme，customtheme
+
+1.button
+	背景；边框、圆角；状态颜色
+2.textbox
+	水印；不支持label，不支持内置按钮区域
+

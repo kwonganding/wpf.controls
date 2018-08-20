@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="Util.Controls.Control.ProgressForValue"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:control="clr-namespace:Util.Controls.Control">
+    <Grid>
+        <ProgressBar x:Name="progress" Height="25"
+                     Value="{Binding Value,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type control:ProgressForValue}}}"
+                     Maximum="{Binding MaxValue, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type control:ProgressForValue}}}"/>
+        <TextBlock Text="{Binding Message, RelativeSource={RelativeSource Mode= FindAncestor, AncestorType={x:Type control:ProgressForValue}}}" 
+                   Background="Transparent" VerticalAlignment="Center" 
+                   HorizontalAlignment="Center" Foreground="White"/>
+    </Grid>
+</UserControl>

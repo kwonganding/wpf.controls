@@ -1,0 +1,36 @@
+﻿<Window x:Class="Util.Controls.WaitingBox" x:Name="wb"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:local="clr-namespace:Util.Controls"
+        AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False" Background="Transparent"
+        Title="WaitingBox" Height="110" Width="270">
+    <Window.Resources>
+        <Storyboard x:Key="OnLoadedStoryboard">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                                          Storyboard.TargetName="wborder" RepeatBehavior="Forever">
+                
+                <EasingColorKeyFrame KeyTime="0:0:0" Value="#FFD306"/>
+                <EasingColorKeyFrame KeyTime="0:0:1.5" Value="#FF0000"/>
+                <EasingColorKeyFrame KeyTime="0:0:3" Value="#FF7F00 "/>
+                <EasingColorKeyFrame KeyTime="0:0:4.5" Value="#FFFF00 "/>
+                <EasingColorKeyFrame KeyTime="0:0:6" Value="#00FF00"/>
+                <EasingColorKeyFrame KeyTime="0:0:8" Value="#00FFFF"/>
+                <EasingColorKeyFrame KeyTime="0:0:10" Value="#0000FF "/>
+                <EasingColorKeyFrame KeyTime="0:0:12" Value="#8B00FF "/>
+                <EasingColorKeyFrame KeyTime="0:0:14" Value="#FFEFD5 "/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource OnLoadedStoryboard}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Border x:Name="wborder" CornerRadius="1" Background="#FFEFD5">
+        <StackPanel VerticalAlignment="Center"  Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+            <local:ProgressRing Width="60" Height="60" Foreground="{StaticResource TextForeground}" Margin="5" IsActive="True"/>
+            <TextBlock x:Name="txtMessage" Margin="2,10,15,10" Width="175" VerticalAlignment="Center" TextWrapping="Wrap">Loading...</TextBlock>
+        </StackPanel>
+    </Border>
+</Window>

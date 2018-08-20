@@ -1,0 +1,202 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:local="clr-namespace:Util.Controls"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/Share.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/ToggleButton.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--多选项样式，简单样式，只支持文本，可以扩展、重写该样式即可-->
+    <Style x:Key="SimpleMultiCheckItemStyle" TargetType="{x:Type ListBoxItem}" >
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <!--指示能否用 ClearType 呈现文本-->
+        <Setter Property="RenderOptions.ClearTypeHint" Value="Auto" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Height" Value="28" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}" >
+                    <Border x:Name="Border" Background="{TemplateBinding Background}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,.5">
+                            <CheckBox IsChecked="{Binding Path=IsSelected,RelativeSource={RelativeSource TemplatedParent},Mode=TwoWay}">
+                                <TextBlock Margin="{TemplateBinding Padding}" Text="{Binding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                   Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                            </CheckBox>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ItemSelectedBackground}" />
+                            <Setter Property="Foreground" Value="{StaticResource ItemSelectedForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ItemMouseOverBackground}" />
+                            <Setter Property="Foreground" Value="{StaticResource ItemMouseOverForeground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--MultiComboBox普通样式-->
+    <Style x:Key="DefaultMultiComboBox" TargetType="{x:Type local:MultiComboBox}">
+        <Setter Property="Height" Value="28" />
+        <Setter Property="Width" Value="200" />
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}" />
+        <Setter Property="Background" Value="{StaticResource TextBackground}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="local:UtilProperty.FocusBorderBrush" Value="{StaticResource FocusedBorderBrush}" />
+        <Setter Property="local:UtilProperty.MouseOverBorderBrush" Value="{StaticResource MouseOverBorderBrush}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="MaxDropDownHeight" Value="400" />
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MultiComboBox}">
+                    <Grid x:Name="PART_Root">
+                        <Border SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="{TemplateBinding local:UtilProperty.CornerRadius}" Panel.ZIndex="2"/>
+                        <Border x:Name="Bg" Background="{TemplateBinding Background}" />
+                        <Grid x:Name="PART_InnerGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="19" />
+                            </Grid.ColumnDefinitions>
+                            <!--Label区域-->
+                            <ContentControl x:Name="Label" Template="{TemplateBinding local:UtilProperty.LabelTemplate}" IsTabStop="False" IsHitTestVisible="False"
+                                            Content="{TemplateBinding local:UtilProperty.Label}"/>
+                            <!--附加内容区域-->
+                            <Border x:Name="PART_AttachContent" Panel.ZIndex="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                                <ContentControl VerticalAlignment="Center" VerticalContentAlignment="Center" Template="{TemplateBinding local:UtilProperty.AttachContent}" />
+                            </Border>
+                            <!--下拉按钮-->
+                            <ToggleButton x:Name="PART_DropDownToggle" Panel.ZIndex="1" IsTabStop="False" Style="{StaticResource ComboToggleButton}" 
+                                         IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                         Grid.Column="1"  Grid.ColumnSpan="3" IsEnabled="{Binding Path=IsReadOnly,RelativeSource={RelativeSource TemplatedParent},
+                                            Converter={x:Static local:XConverter.TrueToFalseConverter},Mode=OneWay}" />
+                            <!--水印-->
+                            <Border Grid.Column="1">
+                                <TextBlock x:Name="Message"  Padding="0" Visibility="Collapsed" Text="{TemplateBinding local:UtilProperty.Watermark}" 
+                                       Foreground="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="0.6" HorizontalAlignment="Left" TextAlignment="Center" 
+                                       VerticalAlignment="Center" Margin="5,2,5,2" />
+                            </Border>
+                            <!--内容区-->
+                            <Grid Grid.Column="1"  Margin="0">
+                                <!--文本编辑-->
+                                <TextBox  x:Name="PART_EditableTextBox" Style="{StaticResource EditableTextBoxStyle}" FontSize="{TemplateBinding FontSize}"
+                                         HorizontalAlignment="Stretch" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" IsHitTestVisible="True"
+                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                         IsReadOnly="{TemplateBinding IsReadOnly}" FontFamily="{TemplateBinding FontFamily}" Foreground="{TemplateBinding Foreground}"
+                                         Text="{Binding Path=Text,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"  />
+                            </Grid>
+                        </Grid>
+                        <!--弹出多选列表-->
+                        <Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" StaysOpen="False"
+                               IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                               PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
+                            <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}" MaxHeight="{Binding MaxDropDownHeight, RelativeSource={RelativeSource TemplatedParent}}">
+                                <Border x:Name="PopupBorder" BorderThickness="{TemplateBinding BorderThickness}" HorizontalAlignment="Stretch"
+                                        Height="Auto" BorderBrush="{StaticResource PopupBorderBrush}" Background="{StaticResource PopupBackground}"/>
+                                <ListBox x:Name="PART_ListBox" SelectionMode="Multiple" ItemsSource="{Binding ItemsSource,RelativeSource={RelativeSource TemplatedParent}}"
+                                             ItemTemplate="{TemplateBinding ItemTemplate}" Margin="0" Padding="0" BorderThickness="1"
+                                             MaxHeight="{TemplateBinding MaxDropDownHeight}" ItemContainerStyle="{StaticResource SimpleMultiCheckItemStyle}"/>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <!--触发器-->
+                    <ControlTemplate.Triggers>
+                        <!--1.显示水印-->
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                            <Setter TargetName="Message" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <!--编辑模式-->
+                        <Trigger Property="IsEditable" Value="True">
+                            <Setter TargetName="PART_DropDownToggle" Property="Grid.Column" Value="3" />
+                            <Setter TargetName="PART_DropDownToggle" Property="Grid.ColumnSpan" Value="1" />
+                            <Setter TargetName="PART_DropDownToggle" Property="Background" Value="Transparent" />
+                            <Setter Property="IsTabStop" Value="false" />
+                            <Setter TargetName="PART_DropDownToggle" Property="Focusable" Value="False" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{Binding Path=(local:UtilProperty.MouseOverBorderBrush),RelativeSource={RelativeSource Self}}"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter  Property="BorderBrush" Value="{Binding Path=(local:UtilProperty.FocusBorderBrush),RelativeSource={RelativeSource Self}}"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter  Property="BorderBrush" Value="{Binding Path=(local:UtilProperty.FocusBorderBrush),RelativeSource={RelativeSource Self}}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_Root" Property="Opacity" Value="{StaticResource DisableOpacity}"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--MultiComboBox包含清除Text按钮的样式 ClearButtonMultiComboBox -->
+    <Style TargetType="{x:Type local:MultiComboBox}" x:Key="ClearButtonMultiComboBox" BasedOn="{StaticResource DefaultMultiComboBox}">
+        <Setter Property="local:UtilProperty.AttachContent">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Button Style="{StaticResource DefaultClearButtonStyle}" 
+                            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:MultiComboBox}}}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--MultiComboBox包含附加属性Label的样式 LabelMultiComboBox -->
+    <Style TargetType="{x:Type local:MultiComboBox}" x:Key="LabelMultiComboBox" BasedOn="{StaticResource DefaultMultiComboBox}">
+        <Setter Property="Width" Value="240"></Setter>
+        <Setter Property="local:UtilProperty.LabelTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl" >
+                    <Border  Background="{StaticResource TextLabelBackground}" Width="{Binding Path=(local:UtilProperty.LabelWidth),RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:MultiComboBox}}}">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Margin="2 0 4 0" Text="{TemplateBinding Content}" IsHitTestVisible="False"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--MultiComboBox包含附加属性Label，以及ClearText按钮的样式 LabelClearButtonMultiComboBox -->
+    <Style TargetType="{x:Type local:MultiComboBox}" x:Key="LabelClearButtonMultiComboBox" BasedOn="{StaticResource DefaultMultiComboBox}">
+        <Setter Property="Width" Value="240"></Setter>
+        <Setter Property="local:UtilProperty.LabelTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl" >
+                    <Border  Background="{StaticResource TextLabelBackground}" Width="{Binding Path=(local:UtilProperty.LabelWidth),RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:MultiComboBox}}}">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Margin="2 0 4 0" Text="{TemplateBinding Content}" IsHitTestVisible="False"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="local:UtilProperty.AttachContent">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Button Style="{StaticResource DefaultClearButtonStyle}" 
+                            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:MultiComboBox}}}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--默认样式-->
+    <Style TargetType="{x:Type local:MultiComboBox}" BasedOn="{StaticResource DefaultMultiComboBox}"></Style>
+
+</ResourceDictionary>

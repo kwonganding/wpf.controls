@@ -1,0 +1,273 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:local="clr-namespace:Util.Controls"
+                   xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/Share.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--TextBox默认样式-->
+    <Style TargetType="{x:Type TextBox}" x:Key="DefaultTextBox">
+        <Setter Property="ContextMenu" Value="{DynamicResource TextBoxContextMenu}" />
+        <Setter Property="SelectionBrush" Value="{StaticResource TextSelectionBrush}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="MinHeight" Value="18" />
+        <Setter Property="Height" Value="28" />
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="Width" Value="120" />
+        <Setter Property="Background" Value="{StaticResource TextBackground}" />
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}" />
+        <Setter Property="Padding" Value="1 0" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="local:UtilProperty.FocusBorderBrush" Value="{StaticResource FocusedBorderBrush}" />
+        <Setter Property="local:UtilProperty.MouseOverBorderBrush" Value="{StaticResource MouseOverBorderBrush}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="local:UtilProperty.BuildTextBoxCommand" Value="True"/>
+        <!-- change SnapsToDevicePixels to True to view a better border and validation error -->
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <!--英 ['kærət]  美 ['kærət]  插入符号-->
+        <Setter Property="CaretBrush" Value="{StaticResource TextForeground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid x:Name="PART_Root">
+                        <Border SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="{TemplateBinding local:UtilProperty.CornerRadius}" Panel.ZIndex="2"/>
+                        <Border x:Name="Bg" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding local:UtilProperty.CornerRadius}"/>
+                        <Grid x:Name="PART_InnerGrid" Margin="{TemplateBinding Padding}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition  Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition  Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <!--Label区域-->
+                            <ContentControl x:Name="Label" Template="{TemplateBinding local:UtilProperty.LabelTemplate}" 
+                                            IsTabStop="False"
+                                            Content="{TemplateBinding local:UtilProperty.Label}"/>
+                            <!--内容区域-->
+                            <ScrollViewer x:Name="PART_ContentHost" BorderThickness="0" Grid.Column="1" IsTabStop="False" Margin="0"
+                                          VerticalAlignment="Stretch" Background="{x:Null}"/>
+                            <!--水印-->
+                            <TextBlock x:Name="Message" Visibility="Collapsed"
+                                       Text="{TemplateBinding local:UtilProperty.Watermark}" Grid.Column="1"
+                                       Foreground="{TemplateBinding Foreground}" IsHitTestVisible="False" Opacity="{StaticResource WatermarkOpacity}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="5,2,5,2" />
+                            <!--附加内容区域-->
+                            <Border x:Name="PART_AttachContent" Grid.Column="2" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <ContentControl VerticalAlignment="Top" VerticalContentAlignment="Top" Template="{TemplateBinding local:UtilProperty.AttachContent}" />
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <!--显示水印-->
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                            <Setter TargetName="Message" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{Binding Path=(local:UtilProperty.MouseOverBorderBrush),RelativeSource={RelativeSource Self}}"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{Binding Path=(local:UtilProperty.FocusBorderBrush),RelativeSource={RelativeSource Self}}"/>
+                        </Trigger>
+                        <!--不可用-->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_Root" Property="Opacity" Value="{StaticResource DisableOpacity}" />
+                        </Trigger>
+                        <!--只读时，禁用PART_AttachContent-->
+                        <Trigger Property="IsReadOnly" Value="True">
+                            <Setter TargetName="PART_AttachContent" Property="IsEnabled" Value="False" />
+                            <Setter Property="Opacity" Value="{StaticResource ReadonlyOpacity}" />
+                            <Setter TargetName="PART_ContentHost" Property="Opacity" Value="{StaticResource ReadonlyOpacity}" />
+                            <Setter TargetName="Label" Property="Opacity" Value="{StaticResource ReadonlyOpacity}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+    </Style>
+
+    <!--TextBox包含清除Text按钮的样式-->
+    <Style TargetType="{x:Type TextBox}" x:Key="ClearButtonTextBox" BasedOn="{StaticResource DefaultTextBox}">
+        <Setter Property="local:UtilProperty.AttachContent">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Button Style="{StaticResource DefaultClearButtonStyle}" 
+                            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TextBox}}}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--TextBox包含附加属性Label的样式-->
+    <Style TargetType="{x:Type TextBox}" x:Key="LabelTextBox" BasedOn="{StaticResource DefaultTextBox}">
+        <Setter Property="Width" Value="180" />
+        <Setter Property="local:UtilProperty.LabelTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl" >
+                    <Border Background="{StaticResource TextLabelBackground}" Width="{Binding Path=(local:UtilProperty.LabelWidth),RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TextBox}}}">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Margin="2 0 4 0" Text="{TemplateBinding Content}" IsHitTestVisible="False"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--TextBox包含附加属性Label，以及ClearText按钮的样式-->
+    <Style TargetType="{x:Type TextBox}" x:Key="LabelClearButtonTextBox" BasedOn="{StaticResource DefaultTextBox}">
+        <Setter Property="Width" Value="180" />
+        <Setter Property="local:UtilProperty.LabelTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl" >
+                    <Border  Background="{StaticResource TextLabelBackground}" Width="{Binding Path=(local:UtilProperty.LabelWidth),RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TextBox}}}">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Margin="2 0 4 0" Text="{TemplateBinding Content}" IsHitTestVisible="False"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="local:UtilProperty.AttachContent">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Button Style="{StaticResource DefaultClearButtonStyle}" 
+                            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TextBox}}}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--LabelOpenFileTextBox-->
+    <Style TargetType="{x:Type TextBox}" x:Key="LabelOpenFileTextBox" BasedOn="{StaticResource LabelTextBox}">
+        <Setter Property="Width" Value="260"/>
+        <!--默认文件过滤器-->
+        <Setter Property="Tag" Value="All files (*.*)|*.*"/>
+        <Setter Property="local:UtilProperty.Label" Value="文件路径"/>
+        <Setter Property="local:UtilProperty.Watermark" Value="选择文件路径"/>
+        <Setter Property="local:UtilProperty.AttachContent">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Button local:UtilProperty.FIcon="&#xe613;" Style="{StaticResource TransparencyButtonStyle}" IsTabStop="False" local:UtilProperty.FIconMargin="0"
+                               local:UtilProperty.IsOpenFileButtonBehaviorEnabled="True" Command="local:UtilProperty.OpenFileCommand" 
+                               CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TextBox}}}" Cursor="Arrow" IsHitTestVisible="True"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--LabelOpenFolderTextBox-->
+    <Style TargetType="{x:Type TextBox}" x:Key="LabelOpenFolderTextBox" BasedOn="{StaticResource LabelTextBox}">
+        <Setter Property="Width" Value="260"/>
+        <Setter Property="local:UtilProperty.Label" Value="设置路径"/>
+        <Setter Property="local:UtilProperty.Watermark" Value="选择文件夹路径"/>
+        <Setter Property="local:UtilProperty.AttachContent">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Button local:UtilProperty.FIcon="&#xe649;" Style="{StaticResource TransparencyButtonStyle}" IsTabStop="False" local:UtilProperty.FIconMargin="0" VerticalAlignment="Center"
+                               local:UtilProperty.IsOpenFolderButtonBehaviorEnabled="True" Command="local:UtilProperty.OpenFolderCommand" 
+                               CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TextBox}}}" Cursor="Arrow"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--LabelSaveFileTextBox-->
+    <Style TargetType="{x:Type TextBox}" x:Key="LabelSaveFileTextBox" BasedOn="{StaticResource LabelTextBox}">
+        <Setter Property="Width" Value="260"></Setter>
+        <!--默认文件过滤器-->
+        <Setter Property="Tag" Value="All files (*.*)|*.*"/>
+        <Setter Property="local:UtilProperty.Label" Value="保存路径"/>
+        <Setter Property="local:UtilProperty.Watermark" Value="选择文件保存路径"/>
+        <Setter Property="local:UtilProperty.AttachContent">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Button local:UtilProperty.FIcon="&#xe62d;" Style="{StaticResource TransparencyButtonStyle}" IsTabStop="False" local:UtilProperty.FIconMargin="0"
+                               local:UtilProperty.IsSaveFileButtonBehaviorEnabled="True" Command="local:UtilProperty.SaveFileCommand" 
+                               CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type TextBox}}}" Cursor="Arrow"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--LabelTextBoxStyle：像Label一样，只读但支持复制的文本样式，当社长IsReadOnly-->
+    <Style TargetType="{x:Type TextBox}" x:Key="LabelStyle">
+        <Setter Property="FontSize" Value="{StaticResource FontSize}"/>
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource TextBoxContextMenu}"/>
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="CaretBrush" Value="{StaticResource TextForeground}"/>
+        <Setter Property="SelectionBrush" Value="{StaticResource TextSelectionBrush}"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="local:UtilProperty.BuildTextBoxCommand" Value="True"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="{StaticResource DisableOpacity}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--***************************DefaultRichTextBox***************************-->
+
+    <Style x:Key="DefaultRichTextBox" TargetType="{x:Type RichTextBox}">
+        <Setter Property="ContextMenu" Value="{DynamicResource TextBoxContextMenu}" />
+        <Setter Property="SelectionBrush" Value="{StaticResource TextSelectionBrush}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="MinHeight" Value="26" />
+        <Setter Property="MinWidth" Value="10" />
+        <Setter Property="Background" Value="{StaticResource TextBackground}" />
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}" />
+        <Setter Property="CaretBrush" Value="{StaticResource TextForeground}" />
+        <Setter Property="local:UtilProperty.FocusForeground" Value="{StaticResource FocusedBorderBrush}" />
+        <Setter Property="local:UtilProperty.MouseOverBorderBrush" Value="{StaticResource MouseOverBorderBrush}" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="AllowDrop" Value="True" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+        <Setter Property="local:UtilProperty.BuildTextBoxCommand" Value="True"/>
+        <!--该值指示是否启用了笔势-->
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <!--SnapsToDevicePixels:该值来确定呈现此元素是否应使用特定于设备的像素设置-->
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Grid>
+                        <Border x:Name="Bd"
+                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{Binding Path=(local:UtilProperty.MouseOverBorderBrush),RelativeSource={RelativeSource Self}}"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter  Property="BorderBrush" Value="{Binding Path=(local:UtilProperty.FocusForeground),RelativeSource={RelativeSource Self}}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Bd" Property="Opacity" Value="0.5" />
+                        </Trigger>
+                        <Trigger Property="IsReadOnly" Value="True">
+                            <Setter TargetName="Bd" Property="Opacity" Value="0.85" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

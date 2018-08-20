@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/FIcon.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Global.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/ScrollViewer.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/CheckBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/RadioButton.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/Menu.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/DataGrid.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/TreeView.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/ComboBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/Calendar.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/ProgressBar.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/ToggleButton.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/DatePicker.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/Separator.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/ListBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/PasswordBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/ListView.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/TabControl.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/Slider.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Style/RangeSlider.xaml"/>
+
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Control/ProgressRing.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Control/BusyBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Control/MultiComboBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Control/TreeComboBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Control/HighTextBlock.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Control/VerticalTextBlock.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Util.Controls;component/Control/WindowBase.xaml" />
+
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
