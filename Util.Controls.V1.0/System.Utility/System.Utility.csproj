@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{425FC769-9426-440B-BA62-B6D89FABD5E8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>System.Utility</RootNamespace>
+    <AssemblyName>System.Utility</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\21-Build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <DefineConstants>DEBUG</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>
+    </DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>false</Optimize>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NHibernate, Version=3.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\donetdll\NHibernate\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="Spring.Core, Version=2.0.0.40000, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\donetdll\Spring.Net\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.96.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\donetdll\Sqlite\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.96.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\donetdll\Sqlite\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cache\CacheTime.cs" />
+    <Compile Include="Cache\CacheManager.cs" />
+    <Compile Include="Cache\ICache.cs" />
+    <Compile Include="Cache\Impl\BaseCache.cs" />
+    <Compile Include="Cache\Impl\NetCache.cs" />
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\Enums.cs" />
+    <Compile Include="Data\SqliteRecovery\SqliteCoreDll.cs" />
+    <Compile Include="Data\SqliteRecovery\SqliteRecoveryHelper.cs" />
+    <Compile Include="Data\SqliteRecovery\SqliteReturn.cs" />
+    <Compile Include="Emit\EmitHelper.cs" />
+    <Compile Include="Extension\SerializableDictionary.cs" />
+    <Compile Include="Extension\TypeExtension.Intptr.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.Object.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.Stream.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.Xml.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.Version.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.StringBuilder.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.IQueryable.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\LongPathFileOperator.cs" />
+    <Compile Include="Helper\QuotedPrintableHelper.cs" />
+    <Compile Include="Helper\RegistryHelper.cs" />
+    <Compile Include="Logger\LogHelper.cs" />
+    <Compile Include="Misc\ConsoleAsyncResult.cs">
+      <DependentUpon>IAsyncResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\ConsoleWriter.cs" />
+    <Compile Include="Misc\Executer.cs" />
+    <Compile Include="Common\Guard.cs" />
+    <Compile Include="Misc\IAsyncResult.cs" />
+    <Compile Include="Misc\AbstractAsyncResult.cs">
+      <DependentUpon>IAsyncResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BaseQuery.cs" />
+    <Compile Include="Data\DBTypeFactory.cs" />
+    <Compile Include="Data\Nhibernate\HttpSessionManager.cs" />
+    <Compile Include="Data\Nhibernate\ISessionManager.cs" />
+    <Compile Include="Data\Nhibernate\SessionManagerFactoryBase.cs" />
+    <Compile Include="Data\Nhibernate\ThreadSessionManager.cs" />
+    <Compile Include="Data\PersistableServiceBase.cs" />
+    <Compile Include="Data\ServiceBase.cs" />
+    <Compile Include="Data\Sqlite\SqliteContext.cs" />
+    <Compile Include="Data\Sqlite\SQLiteString.cs" />
+    <Compile Include="Data\Sqlite\SqlParameter.cs" />
+    <Compile Include="Data\Validation\Attributes\ValidatorAttribute.cs" />
+    <Compile Include="Data\Validation\Attributes\RequireValidatorAttribute.cs" />
+    <Compile Include="Data\Validation\Attributes\NumericValidatorAttribute.cs" />
+    <Compile Include="Data\Validation\Attributes\LengthValidatorAttribute.cs" />
+    <Compile Include="Data\Validation\IValidateable.cs" />
+    <Compile Include="Data\Validation\Validators\LengthValidator.cs" />
+    <Compile Include="Data\Validation\Validators\RequireValidator\RequireValidator.cs" />
+    <Compile Include="Data\Validation\Validators\RequireValidator\RequireValidatorFactory.cs" />
+    <Compile Include="Data\Validation\Validators\RequireValidator\StringRequireValidator.cs" />
+    <Compile Include="Data\Validation\Validators\RequireValidator\DatetimeRequireValidator.cs" />
+    <Compile Include="Data\Validation\ValidateableBase.cs" />
+    <Compile Include="Data\Validation\ValidationManager.cs" />
+    <Compile Include="Data\Validation\Validators\Validator.cs" />
+    <Compile Include="Data\Validation\Validators\NumericValidator.cs" />
+    <Compile Include="Dynamic\DynamicConvert.cs" />
+    <Compile Include="Dynamic\DynamicX.cs" />
+    <Compile Include="Dynamic\GetPropertyBinder.cs" />
+    <Compile Include="Dynamic\IDynamicEnable.cs" />
+    <Compile Include="Dynamic\SetPropertyBinder.cs" />
+    <Compile Include="Extension\TypeExtension.Boolean.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.byte.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.Dictionary.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.Data.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\Color.cs" />
+    <Compile Include="Helper\DataVisualAnalysis.cs" />
+    <Compile Include="Helper\Format.cs" />
+    <Compile Include="Helper\HttpUtils.cs" />
+    <Compile Include="Helper\Image.cs" />
+    <Compile Include="Extension\TypeExtension.cs" />
+    <Compile Include="Extension\TypeExtension.DateTime.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.Exception.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.IEnumerable.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.Int.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.Reflection.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.String.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.Decimal.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.Enum.cs">
+      <DependentUpon>TypeExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extension\TypeExtension.sth.cs" />
+    <Compile Include="Helper\Config.cs" />
+    <Compile Include="Helper\Cryptography.cs" />
+    <Compile Include="Helper\File.cs" />
+    <Compile Include="Helper\Random.cs" />
+    <Compile Include="Helper\Reflection.cs" />
+    <Compile Include="Helper\Serialize.cs" />
+    <Compile Include="Helper\Sys.cs" />
+    <Compile Include="Helper\Test.cs" />
+    <Compile Include="Ioc\IContainer.cs" />
+    <Compile Include="Ioc\Ioc.cs" />
+    <Compile Include="Ioc\SpringContainer.cs" />
+    <Compile Include="Logger\SimpleLogger\SimpleLogger.cs" />
+    <Compile Include="Misc\DefaultAsyncResult.cs">
+      <DependentUpon>IAsyncResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\IgnoreCaseStringComparer.cs" />
+    <Compile Include="Patterns\FlyweightBase.cs" />
+    <Compile Include="Patterns\Obsever.cs" />
+    <Compile Include="Patterns\ISimpleFactory.cs" />
+    <Compile Include="Patterns\Singleton.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\DefaultErrorMessages1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DefaultErrorMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\Identity.cs" />
+    <Compile Include="Security\UserInfo.cs" />
+    <Compile Include="Security\Principal.cs" />
+    <Compile Include="Security\WebSecurityService.cs" />
+    <Compile Include="Security\WinSecurityService.cs" />
+    <Compile Include="Misc\SingleThread.cs" />
+    <Compile Include="Win32\Enums.cs" />
+    <Compile Include="Win32\IniConfig.cs" />
+    <Compile Include="Win32\Struct.cs" />
+    <Compile Include="Win32\Win32.cs" />
+    <Compile Include="Win32\WMI.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\DefaultErrorMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DefaultErrorMessages1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dynamic\Clay\" />
+    <Folder Include="Emit\Castle\" />
+    <Folder Include="Emit\Emit\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
